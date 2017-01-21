@@ -1,5 +1,13 @@
 {
 	"intents" : [
-
+		{
+			"intent" : "GetDefinition",
+			"slots" : [
+				{
+					"name" : "WordList",
+					"type" : "LIST_OF_DICT_WORDS"
+				}
+			]
+		}
 	]
 }
