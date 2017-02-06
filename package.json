@@ -1,0 +1,23 @@
+{
+  "name": "Alexa-Oxford-Dictionary-Skill",
+  "version": "0.0.1",
+  "description": "An unofficial Alexa skill for the Oxford dictionary.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "alexa",
+    "skill",
+    "dictionary"
+  ],
+  "author": "Amazon.com",
+  "license": "See license in ../LICENSE.txt",
+  "dependencies": {
+    "alexa-sdk": "^1.0.4"
+  },
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/qechappell/alexa-oxford-dictionary"
+  }
+}
