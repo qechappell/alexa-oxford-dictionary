@@ -12,9 +12,6 @@ var eventHandlers = {
 	},
 	'onIntent' : function(intentRequest, session) {
 		console.log("new intent");
-	},
-	'Unhandled' : function() {
-		console.log("unhandled");
 	}
 }
 
