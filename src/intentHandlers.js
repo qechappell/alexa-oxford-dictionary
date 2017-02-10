@@ -32,7 +32,7 @@ var intentHandlers = {
   			});
   			res.on('end', () => {
   				var data = JSON.parse(body);
-  				tell(this, data.metadata.provider);
+  				tell(this, data.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0]);
   			});
 		});
 		req.setTimeout(10000, function() {
