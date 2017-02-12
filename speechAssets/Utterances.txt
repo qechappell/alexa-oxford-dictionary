@@ -1,1 +1,8 @@
 GetDefinition what is the definition of {Word}
+GetDefinition what is the definition of the word {Word}
+GetDefinition what is {Word}
+
+GetSentence what is a sentence using the word {Word}
+GetSentence use the word {Word} in a sentence
+GetSentence use {Word} in a sentence
+GetSentence give me a sentence using {Word}

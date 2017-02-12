@@ -39,8 +39,35 @@ var intentHandlers = {
 			console.log('timed out');
 		});
 		req.end();
-		//tell(this, 'the word was ' + word);
-	}
+	},
+	'GetSentence' : function () {
+		var word = this.event.request.intent.slots.Word.value;
+		var endpoint = dictUrl + lang + '/' + word;
+		var options = {
+   		    hostname: baseUrl,
+    		path: endpoint,
+    		method: 'GET',
+    		headers: {
+    		    accept: 'application/json',
+    		    app_key: appKey,
+    		    app_id: appId
+    		}
+		};
+		var req = https.request(options, (res) => {
+			var body = "";
+			res.on('data', (d) => {
+				body += d;
+  			});
+  			res.on('end', () => {
+  				var data = JSON.parse(body);
+  				tell(this, data.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0]);
+  			});
+		});
+		req.setTimeout(10000, function() {
+			console.log('timed out');
+		});
+		req.end();
+	} 
 }
 
 function ask(handler, question) {

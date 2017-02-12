@@ -8,6 +8,15 @@
 					"type" : "LIST_OF_DICT_WORDS"
 				}
 			]
+		},
+		{
+			"intent" : "GetSentence",
+			"slots" : [
+				{
+					"name" : "Word",
+					"type" : "LIST_OF_DICT_WORDS"
+				}
+			]
 		}
 	]
 }
