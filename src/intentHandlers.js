@@ -32,7 +32,29 @@ var intentHandlers = {
   			});
   			res.on('end', () => {
   				var data = JSON.parse(body);
-  				tell(this, data.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0]);
+  				var senses = data.results[0].lexicalEntries[0].entries[0].senses;
+  				console.log("senses: " + senses.length);
+  				var definitions = new Array();
+  				for (var i = 0; i < senses.length; i++) {
+  					console.log("senses.length = " + senses.length);
+  					definitions = definitions.concat(senses[i].definitions);
+  				}
+  				var definitionCount = definitions.length;
+  				console.log(definitions);
+  				console.log('Definition count: ' + definitionCount);
+  				if (definitionCount > 1) {
+	  				var definitionIdx = 1;
+  					var outputSpeech = "I have found " + definitionCount +" definitions of the word " + word + " , here they are: ";
+  					for (var i = 0; i < definitionCount; i++) {
+  						outputSpeech += " definition " + definitionIdx + ": " + definitions[i];
+  						definitionIdx++;
+  				    }
+  				}
+  				else {
+  					var outputSpeech = "The definition of the word " + word + " is: " + definitions[0];
+  				}
+
+  				tell(this, outputSpeech);
   			});
 		});
 		req.setTimeout(10000, function() {
