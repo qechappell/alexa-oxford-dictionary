@@ -64,7 +64,7 @@ var intentHandlers = {
 	},
 	'GetSentence' : function () {
 		var word = this.event.request.intent.slots.Word.value;
-		var endpoint = dictUrl + lang + '/' + word;
+		var endpoint = dictUrl + lang + '/' + word + "/sentences";
 		var options = {
    		    hostname: baseUrl,
     		path: endpoint,
@@ -81,8 +81,22 @@ var intentHandlers = {
 				body += d;
   			});
   			res.on('end', () => {
+  				console.log(body);
   				var data = JSON.parse(body);
-  				tell(this, data.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0]);
+  				var sentences = data.results[0].lexicalEntries[0].sentences;
+  				console.log(sentences);
+  				for (var i = 0; i < sentences.length; i++) {
+  					if (sentences[i].regions == ['North American']) {
+  						var outputSpeech = "here is a sentence using the word " + word + ". " + sentence[i].text;
+  						break;
+  					}
+  					else {
+  						var outputSpeech = "Sorry, I could not find a sentence containing the word, " + word;
+  					}
+  				}
+
+  				var outputSpeech = sentences[0].text;
+  				tell(this, outputSpeech);
   			});
 		});
 		req.setTimeout(10000, function() {
